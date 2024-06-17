@@ -1,0 +1,21 @@
+FROM rust:slim as builder
+
+COPY . .
+
+RUN cargo install --locked --path .
+
+
+FROM debian:bookworm-slim
+
+ENV HOME=/home/user
+ENV PATH=$HOME/app:$PATH
+
+RUN useradd -m -u 1000 user
+
+USER user
+
+WORKDIR $HOME/app
+
+COPY --chown=user --from=builder /target/release/tokeniser-api $HOME/app
+
+CMD ["tokeniser-api"]
