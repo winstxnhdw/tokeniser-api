@@ -3,7 +3,7 @@ FROM rust:slim as rust-builder
 COPY . .
 
 RUN apt update
-RUN apt install -y pkg-config libssl-dev g++
+RUN apt install -y pkg-config libssl-dev g++ curl
 RUN rustup default nightly
 RUN cargo install --locked --path .
 
