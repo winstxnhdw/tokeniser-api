@@ -9,8 +9,14 @@ use utoipa::OpenApi;
 #[openapi(info(description = "An API for tokenising strings"))]
 struct ApiSpecification;
 
+fn on_startup() {
+    _ = &*tokenisers::LLAMA3_TOKENISER;
+}
+
 #[tokio::main]
 async fn main() -> Result<(), std::io::Error> {
+    on_startup();
+
     let app = axum::Router::new().merge(v1::router()).merge(
         utoipa_swagger_ui::SwaggerUi::new("/docs")
             .url("/api-docs/openapi.json", ApiSpecification::openapi()),
