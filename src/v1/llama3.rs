@@ -1,5 +1,34 @@
-pub mod decode;
-pub mod encode;
+use crate::schemas::{
+    DecodeRequestQueryParameter, DecodeRequestSchema, EncodeRequestQueryParameter,
+    EncodeRequestSchema,
+};
+use axum::extract::Query;
+use axum::{response, Json};
 
-pub use decode::decode;
-pub use encode::encode;
+#[utoipa::path(post, path = "/v1/llama3/decode", responses(
+    (status = 200, body = DecodeResponseSchema),
+    (status = 400, body = ErrorResponseSchema)
+))]
+pub async fn decode(
+    Query(query_parameters): Query<DecodeRequestQueryParameter>,
+    Json(request): Json<DecodeRequestSchema>,
+) -> impl response::IntoResponse {
+    crate::utils::build_response(
+        crate::tokenisers::llama3::decode(&request.tokens, query_parameters.skip_special_tokens),
+        "Failed to decode tokens!",
+    )
+}
+
+#[utoipa::path(post, path = "/v1/llama3/encode", responses(
+    (status = 200, body = DecodeResponseSchema),
+    (status = 400, body = ErrorResponseSchema)
+))]
+pub async fn encode(
+    Query(query_parameters): Query<EncodeRequestQueryParameter>,
+    Json(request): Json<EncodeRequestSchema>,
+) -> impl response::IntoResponse {
+    crate::utils::build_response(
+        crate::tokenisers::llama3::encode(request.text, query_parameters.add_special_tokens),
+        "Failed to encode!",
+    )
+}
