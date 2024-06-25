@@ -1,13 +1,13 @@
 use serde::{Deserialize, Serialize};
 use utoipa::ToSchema;
 
-#[derive(Serialize, ToSchema)]
+#[derive(Debug, Deserialize, Serialize, ToSchema)]
 pub struct EncodeResponseSchema {
     #[schema(example = r#"["Hello", ",", "Ġworld", "!"]"#)]
     pub tokens: Vec<String>,
 }
 
-#[derive(Deserialize, ToSchema)]
+#[derive(Deserialize, Serialize, ToSchema)]
 pub struct EncodeRequestSchema {
     #[schema(example = "Hello, world!")]
     pub text: String,
@@ -19,13 +19,13 @@ pub struct EncodeRequestQueryParameter {
     pub add_special_tokens: bool,
 }
 
-#[derive(Serialize, ToSchema)]
+#[derive(Deserialize, Serialize, ToSchema)]
 pub struct DecodeResponseSchema {
     #[schema(example = "Hello, world!")]
     pub text: String,
 }
 
-#[derive(Deserialize, ToSchema)]
+#[derive(Deserialize, Serialize, ToSchema)]
 pub struct DecodeRequestSchema {
     pub tokens: Vec<u32>,
 }

@@ -1,15 +1,11 @@
-use crate::{get_client, v1::API_VERSION};
-use anyhow::Result;
+use crate::v1::API_VERSION;
 
 #[tokio::test]
-async fn index() -> Result<()> {
-    let client = get_client().await?;
-    let response = client.do_get(format!("/{API_VERSION}").as_str()).await?;
+pub async fn index() -> anyhow::Result<()> {
+    let client = crate::get_client();
+    let response = client.get(format!("/{API_VERSION}").as_str()).await.text();
 
-    assert_eq!(
-        response.text_body().unwrap(),
-        format!("Welcome to {API_VERSION} of the API!")
-    );
+    assert_eq!(response, format!("Welcome to {API_VERSION} of the API!"));
 
     Ok(())
 }
