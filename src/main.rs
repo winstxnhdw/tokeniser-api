@@ -1,5 +1,6 @@
 mod schemas;
 mod tokenisers;
+mod utils;
 mod v1;
 
 use utoipa::OpenApi;
