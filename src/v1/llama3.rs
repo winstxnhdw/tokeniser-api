@@ -13,13 +13,9 @@ pub async fn decode(
     Query(query_parameters): Query<DecodeRequestQueryParameter>,
     Json(request): Json<DecodeRequestSchema>,
 ) -> impl response::IntoResponse {
-    let response = match crate::tokenisers::llama3::decode(
-        &request.tokens,
-        query_parameters.skip_special_tokens,
-    ) {
-        Some(text) => Some(DecodeResponseSchema { text }),
-        _ => None,
-    };
+    let response =
+        crate::tokenisers::llama3::decode(&request.tokens, query_parameters.skip_special_tokens)
+            .map(|text| DecodeResponseSchema { text });
 
     crate::utils::build_response(response, "Failed to decode tokens!")
 }
@@ -32,13 +28,9 @@ pub async fn encode(
     Query(query_parameters): Query<EncodeRequestQueryParameter>,
     Json(request): Json<EncodeRequestSchema>,
 ) -> impl response::IntoResponse {
-    let response = match crate::tokenisers::llama3::encode(
-        request.text,
-        query_parameters.add_special_tokens,
-    ) {
-        Some(tokens) => Some(EncodeResponseSchema { tokens }),
-        _ => None,
-    };
+    let response =
+        crate::tokenisers::llama3::encode(request.text, query_parameters.add_special_tokens)
+            .map(|tokens| EncodeResponseSchema { tokens });
 
     crate::utils::build_response(response, "Failed to encode!")
 }
