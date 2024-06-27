@@ -3,6 +3,7 @@ mod tokenisers;
 mod utils;
 mod v1;
 
+use axum::routing::get;
 use axum::Router;
 use utoipa::OpenApi;
 
@@ -18,7 +19,7 @@ fn on_startup() {
 pub fn app() -> Router {
     on_startup();
 
-    Router::new().merge(v1::router()).merge(
+    Router::new().route("/", get({})).merge(v1::router()).merge(
         utoipa_swagger_ui::SwaggerUi::new("/docs")
             .url("/api-docs/openapi.json", ApiSpecification::openapi()),
     )
