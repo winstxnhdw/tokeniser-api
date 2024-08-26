@@ -6,7 +6,7 @@ use tokeniser_api::schemas;
 pub async fn encode() -> Result<()> {
     let client = get_client();
     let response: schemas::EncodeResponseSchema = client
-        .post(format!("/{API_VERSION}/llama3/encode").as_str())
+        .post(format!("/api/{API_VERSION}/llama3/encode").as_str())
         .json(&schemas::EncodeRequestSchema {
             text: "Hello, world!".to_string(),
         })
@@ -21,7 +21,7 @@ pub async fn encode() -> Result<()> {
 pub async fn decode() -> Result<()> {
     let client = get_client();
     let response: schemas::DecodeResponseSchema = client
-        .post(format!("/{API_VERSION}/llama3/decode").as_str())
+        .post(format!("/api/{API_VERSION}/llama3/decode").as_str())
         .json(&schemas::DecodeRequestSchema {
             tokens: [0].to_vec(),
         })

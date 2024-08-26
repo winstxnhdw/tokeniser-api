@@ -8,6 +8,14 @@ RUN rustup default nightly
 RUN cargo install --locked --path .
 
 
+FROM python:slim AS model-builder
+
+RUN pip install huggingface_hub
+RUN python -c \
+    "from huggingface_hub import snapshot_download; \
+    snapshot_download('winstxnhdw/llama3-tokeniser');"
+
+
 FROM python:slim
 
 ENV HOME=/home/user
@@ -19,6 +27,7 @@ USER user
 
 WORKDIR $HOME/app
 
+COPY --chown=user --from=model-builder  /root/.cache/huggingface $HOME/.cache/huggingface
 COPY --chown=user --from=rust-builder   /target/release/tokeniser-api $HOME/app
 
 CMD ["tokeniser-api"]
