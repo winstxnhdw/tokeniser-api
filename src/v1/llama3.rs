@@ -5,7 +5,7 @@ use crate::schemas::{
 use axum::extract::Query;
 use axum::{response, Json};
 
-#[utoipa::path(post, path = "/v1/llama3/decode", responses(
+#[utoipa::path(post, path = "/api/v1/llama3/decode", responses(
     (status = 200, body = DecodeResponseSchema),
     (status = 400, body = ErrorResponseSchema)
 ))]
@@ -20,7 +20,7 @@ pub async fn decode(
     crate::utils::build_response(response, "Failed to decode tokens!")
 }
 
-#[utoipa::path(post, path = "/v1/llama3/encode", responses(
+#[utoipa::path(post, path = "/api/v1/llama3/encode", responses(
     (status = 200, body = DecodeResponseSchema),
     (status = 400, body = ErrorResponseSchema)
 ))]

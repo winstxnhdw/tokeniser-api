@@ -19,7 +19,7 @@ If your tokeniser is not listed below, please open an issue or a pull request.
 To encode, simply cURL the endpoint like in the following.
 
 ```bash
-curl -O 'https://winstxnhdw-tokeniser-api.hf.space/v1/llama3/encode' \
+curl -O 'https://winstxnhdw-tokeniser-api.hf.space/api/v1/llama3/encode' \
      -H 'Content-Type: application/json' \
      -d '{ "text": "Hello, world!" }'
 ```
@@ -27,7 +27,7 @@ curl -O 'https://winstxnhdw-tokeniser-api.hf.space/v1/llama3/encode' \
 To decode, simply cURL the endpoint like in the following.
 
 ```bash
-curl -O 'https://winstxnhdw-tokeniser-api.hf.space/v1/llama3/decode' \
+curl -O 'https://winstxnhdw-tokeniser-api.hf.space/api/v1/llama3/decode' \
      -H 'Content-Type: application/json' \
      -d '{ "tokens": [ 0 ] }'
 ```

@@ -12,15 +12,16 @@ use utoipa::OpenApi;
 #[openapi(info(description = "An API for tokenising strings"))]
 struct ApiSpecification;
 
-fn on_startup() {
-    _ = &*tokenisers::LLAMA3_TOKENISER;
-}
-
 pub fn app() -> Router {
-    on_startup();
+    let root_path = "/api";
 
-    Router::new().route("/", get(())).merge(v1::router()).merge(
-        utoipa_swagger_ui::SwaggerUi::new("/docs")
-            .url("/api-docs/openapi.json", ApiSpecification::openapi()),
-    )
+    Router::new()
+        .nest(
+            root_path,
+            Router::new().route("/", get(())).merge(v1::router()),
+        )
+        .merge(
+            utoipa_swagger_ui::SwaggerUi::new(format!("{}/docs", root_path))
+                .url("/api-docs/openapi.json", ApiSpecification::openapi()),
+        )
 }
