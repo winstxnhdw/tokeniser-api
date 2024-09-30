@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.0
 
       - name: Run the Docker containers
         run: docker build -f Dockerfile.build -t $REPOSITORY_NAME .
