@@ -10,15 +10,15 @@ edition = "2021"
 
 [dependencies]
 axum = "0.7.7"
-serde = { version = "1.0.210", features = ["derive"] }
-serde_json = "1.0.128"
-tokenizers = { version = "0.20.1", features = ["http"] }
-tokio = { version = "1.40.0", features = ["full"] }
+serde = { version = "1.0.214", features = ["derive"] }
+serde_json = "1.0.132"
+tokenizers = { version = "0.20.2", features = ["http"] }
+tokio = { version = "1.41.0", features = ["full"] }
 tower-http = { version = "0.6.1", features = ["util"] }
-utoipa = { version = "4.2.3", features = ["axum_extras"] }
-utoipa-swagger-ui = { version = "7.1.0", features = ["axum"] }
-utoipauto = "0.1.14"
+utoipa = { version = "5.2.0", features = ["axum_extras"] }
+utoipa-swagger-ui = { version = "8.0.3", features = ["axum"] }
+utoipauto = "0.2.0"
 
 [dev-dependencies]
-anyhow = "1.0.89"
+anyhow = "1.0.92"
 axum-test = "15.3.1"
