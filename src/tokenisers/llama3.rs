@@ -1,7 +1,7 @@
-use super::LLAMA3_TOKENISER;
+use tokenizers::tokenizer::Tokenizer;
 
-pub fn encode(text: String, add_special_tokens: bool) -> Option<Vec<String>> {
-    let tokens = LLAMA3_TOKENISER
+pub fn encode(tokeniser: Tokenizer, text: String, add_special_tokens: bool) -> Option<Vec<String>> {
+    let tokens = tokeniser
         .encode(text, add_special_tokens)
         .ok()?
         .get_tokens()
@@ -10,6 +10,6 @@ pub fn encode(text: String, add_special_tokens: bool) -> Option<Vec<String>> {
     Some(tokens)
 }
 
-pub fn decode(tokens: &[u32], skip_special_tokens: bool) -> Option<String> {
-    LLAMA3_TOKENISER.decode(tokens, skip_special_tokens).ok()
+pub fn decode(tokeniser: Tokenizer, tokens: &[u32], skip_special_tokens: bool) -> Option<String> {
+    tokeniser.decode(tokens, skip_special_tokens).ok()
 }
