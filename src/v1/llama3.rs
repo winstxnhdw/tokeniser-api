@@ -1,6 +1,6 @@
 use crate::schemas::{
     DecodeRequestQueryParameter, DecodeRequestSchema, DecodeResponseSchema,
-    EncodeRequestQueryParameter, EncodeRequestSchema, EncodeResponseSchema,
+    EncodeRequestQueryParameter, EncodeRequestSchema, EncodeResponseSchema, ErrorResponseSchema,
 };
 use axum::extract::Query;
 use axum::{response, Json};
