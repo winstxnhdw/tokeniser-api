@@ -21,4 +21,4 @@ utoipauto = "0.2.0"
 
 [dev-dependencies]
 anyhow = "1.0.95"
-axum-test = "15.3.1"
+axum-test = "17.0.1"
