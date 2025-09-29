@@ -9,8 +9,8 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-axum = "0.8.4"
-serde = { version = "1.0.227", features = ["derive"] }
+axum = "0.8.5"
+serde = { version = "1.0.228", features = ["derive"] }
 serde_json = "1.0.145"
 tokenizers = { version = "0.22.1", features = ["http"] }
 tokio = { version = "1.47.1", features = ["full"] }
