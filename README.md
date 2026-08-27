@@ -2,7 +2,6 @@
 
 [![main.yml](https://github.com/winstxnhdw/tokeniser-api/actions/workflows/main.yml/badge.svg)](https://github.com/winstxnhdw/tokeniser-api/actions/workflows/main.yml)
 [![deploy.yml](https://github.com/winstxnhdw/tokeniser-api/actions/workflows/deploy.yml/badge.svg)](https://github.com/winstxnhdw/tokeniser-api/actions/workflows/deploy.yml)
-[![warmer.yml](https://github.com/winstxnhdw/tokeniser-api/actions/workflows/warmer.yml/badge.svg)](https://github.com/winstxnhdw/tokeniser-api/actions/workflows/warmer.yml)
 [![dependabot.yml](https://github.com/winstxnhdw/tokeniser-api/actions/workflows/dependabot.yml/badge.svg)](https://github.com/winstxnhdw/tokeniser-api/actions/workflows/dependabot.yml)
 
 [![Open in Spaces](https://huggingface.co/datasets/huggingface/badges/raw/main/open-in-hf-spaces-md-dark.svg)](https://huggingface.co/spaces/winstxnhdw/tokeniser-api)
